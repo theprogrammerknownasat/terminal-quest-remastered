@@ -1,0 +1,29 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Terminal Quest: Remastered
+GenericName=Linux Learning Adventure
+Comment=Learn Linux commands through an interactive adventure game
+Icon=utilities-terminal
+Exec=/opt/terminal-quest/launch_terminal_quest.sh
+Terminal=false
+Categories=Education;System;
+Keywords=linux;terminal;education;learning;commands;shell;tutorial;
+StartupNotify=true
+MimeType=
+Actions=SafeMode;Tutorial;Help;
+
+[Desktop Action SafeMode]
+Name=Safe Terminal Mode
+Exec=/opt/terminal-quest/launch_terminal_quest.sh --safe-mode
+Icon=utilities-terminal
+
+[Desktop Action Tutorial]
+Name=Restart Tutorial
+Exec=/opt/terminal-quest/launch_terminal_quest.sh --reset-tutorial
+Icon=help-about
+
+[Desktop Action Help]
+Name=View Help
+Exec=/opt/terminal-quest/show_help.sh
+Icon=help-contents

@@ -1,0 +1,333 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "title": "Terminal Quest: Remastered",
+    "description": "An educational Linux adventure for complete beginners",
+    "estimated_duration": "1-2 hours"
+  },
+  
+  "chapters": {
+    "0": {
+      "title": "The Awakening",
+      "description": "Player discovers the mysterious digital storm has corrupted their GUI",
+      "sections": {
+        "intro": {
+          "text": "You slowly regain consciousness, your vision blurry and unfocused.\nThe familiar glow of your computer screen is gone, replaced by stark white text on a black background.\n\nSomething is very wrong.\n\nWhere is your desktop? Where are your icons? Where is... everything?\n\nSuddenly, text begins to appear on the screen, as if someone is typing directly to you...",
+          "clear_after": true,
+          "press_any_key": true
+        },
+        
+        "shell_introduction": {
+          "speaker": "SHELL",
+          "text": "Hello there! You're finally awake.\n\nDon't panic - I know this looks scary, but I'm here to help you.\nMy name is Shell, and I'm a part of your computer that you've never met before.\n\nSomething has happened to your computer's visual interface - what you might call the \"desktop\" with all the pretty icons and windows. A mysterious digital storm has corrupted it completely.\n\nBut don't worry! I can help you navigate your computer without all those visual elements.\nIn fact, this might be the perfect opportunity to show you how computers REALLY work underneath all those pretty graphics.\n\nThe truth is, everything you can do with a mouse and clicking, you can do much more powerfully with words - with commands. I'll teach you how.\n\nFirst things first - you need to learn how to talk to me.\nWhen you see the prompt with the $ symbol, that's me waiting for your instructions.",
+          "clear_after": false,
+          "press_any_key": true
+        }
+      }
+    },
+    
+    "1": {
+      "title": "First Contact - Learning to Communicate",
+      "description": "Player learns their first basic commands",
+      "sections": {
+        "lesson_intro": {
+          "speaker": "SHELL",
+          "text": "Let's start with the most basic command: asking where you are.\n\nIn the visual world, you might see a folder icon and know you're in your \"Documents\" folder.\nHere, we use a command called 'pwd' - which stands for \"Print Working Directory\".\n\nTry typing: pwd\n\nGo ahead, type 'pwd' and press Enter. I'll wait!",
+          "expected_command": "pwd",
+          "lesson_context": "first_pwd"
+        },
+        
+        "after_pwd": {
+          "speaker": "SHELL",
+          "text": "Excellent! You can see that you're currently in your home directory.\n\nThe 'pwd' command shows you your current location in the computer's file system.\nThink of it like asking \"Where am I?\" in a big building.\n\nNow let's see what's around you. The command 'ls' will list everything in your current location.\nIt's like looking around a room to see what's there.\n\nTry typing: ls",
+          "expected_command": "ls",
+          "lesson_context": "first_ls"
+        },
+        
+        "after_ls": {
+          "speaker": "SHELL", 
+          "text": "Great! You can see all the files and folders in your current location.\n\nIn the visual world, folders would appear as little folder icons, and files would have different icons based on their type. Here, we see their names directly.\n\nLet's explore a bit. You can move into a different folder using the 'cd' command - which stands for \"Change Directory\".\n\nI can see there's a folder called 'terminal_quest_sandbox' that I prepared for you to practice in.\n\nTry typing: cd terminal_quest_sandbox",
+          "expected_command": "cd terminal_quest_sandbox",
+          "lesson_context": "exploring_directories"
+        }
+      }
+    },
+    
+    "2": {
+      "title": "Exploration and Discovery",
+      "description": "Player explores the file system and learns more commands",
+      "sections": {
+        "sandbox_exploration": {
+          "speaker": "SHELL",
+          "text": "Perfect! You've moved into the practice area I set up for you.\n\nNotice how your prompt changed? It now shows you're in the terminal_quest_sandbox folder.\n\nLet's look around this new location. Try 'ls' again to see what's here.\n\nFeel free to explore! You can use 'cd' to enter folders, and 'cd ..' to go back up one level.\nTry 'cat filename.txt' to read the contents of text files.",
+          "lesson_context": "free_exploration"
+        },
+        
+        "file_operations": {
+          "speaker": "SHELL",
+          "text": "You're getting the hang of this! Let me teach you a few more useful commands.\n\n'cat' - displays the contents of a file\n'less' - lets you read long files page by page (press 'q' to quit)\n'head' - shows just the first few lines of a file\n'tail' - shows the last few lines of a file\n\nTry reading the welcome.txt file with: cat welcome.txt",
+          "expected_command": "cat welcome.txt",
+          "lesson_context": "file_reading"
+        }
+      }
+    },
+    
+    "3": {
+      "title": "The Computer Revelation",
+      "description": "Shell realizes the player knows nothing about computers and begins education",
+      "sections": {
+        "realization": {
+          "speaker": "SHELL",
+          "text": "You're doing wonderfully! You're already navigating like a pro.\n\nBut I'm starting to realize something... you seem completely new to all of this.\nHave you ever used a computer like this before?\n\nActually, let me ask you something more important:\nDo you know what a computer actually IS? I mean, really, truly know what's inside this machine you're using?\n\nI think before we go any further with fixing the \"corruption\", I should show you around your own computer.\nAfter all, how can you fix something if you don't know how it works?\n\nLet me show you what's inside this magical box...",
+          "clear_after": true,
+          "press_any_key": true
+        },
+        
+        "cpu_introduction": {
+          "speaker": "SHELL", 
+          "text": "Let's start with the brain of your computer - the CPU (Central Processing Unit).\n\nYour computer has an Intel Core i7 3rd generation processor.\nThink of the CPU like the conductor of an orchestra - it coordinates everything else and does the actual \"thinking\".\n\nEvery single thing you do - typing commands, running programs, even displaying this text - gets processed by this little chip no bigger than a postage stamp!\n\nThe CPU can perform billions of calculations per second. When you type a command, the CPU processes it, figures out what you want, and makes it happen.",
+          "show_ascii": "cpu",
+          "clear_after": false,
+          "press_any_key": true
+        },
+        
+        "memory_introduction": {
+          "speaker": "SHELL",
+          "text": "Next, let's talk about your computer's memory - the RAM (Random Access Memory).\n\nYou have 16 gigabytes of DDR3 RAM. Think of RAM like your desk workspace.\nThe bigger your desk, the more projects you can have spread out and work on at the same time.\n\nWhen you open a program, it gets loaded from storage into RAM so the CPU can work with it quickly.\nIt's like taking a book from a bookshelf and putting it on your desk to read.\n\nRAM is temporary - when you turn off your computer, everything in RAM disappears. That's why you need to save your work!",
+          "show_ascii": "memory",
+          "press_any_key": true
+        },
+        
+        "memory_check": {
+          "speaker": "SHELL",
+          "text": "Let me show you how to check your computer's memory usage right now.\n\nTry this command: free -h\n\nThe '-h' flag makes the output 'human readable' - showing sizes in GB and MB instead of just numbers.",
+          "expected_command": "free -h",
+          "lesson_context": "memory_check"
+        }
+      }
+    },
+    
+    "4": {
+      "title": "Hardware Deep Dive",
+      "description": "Continue exploring computer components",
+      "sections": {
+        "gpu_introduction": {
+          "speaker": "SHELL",
+          "text": "Now let's look at your graphics card - the GPU (Graphics Processing Unit).\n\nYou have an NVIDIA GeForce GTX 1650. This is what handles all the visual processing.\nIt's like having a specialized artist that's incredibly good at drawing and painting.\n\nWhile the CPU is great at complex thinking, the GPU is amazing at doing thousands of simple visual calculations at the same time.\nThat's how it can render games, videos, and even the text you're reading right now!\n\nLet's check if your system can see the graphics card:",
+          "show_ascii": "gpu",
+          "press_any_key": true
+        },
+        
+        "gpu_check": {
+          "speaker": "SHELL",
+          "text": "Try this command to see your graphics hardware: lspci | grep -i vga\n\nDon't worry about understanding that complex command yet - we're just checking that your graphics card is working properly.",
+          "expected_command": "lspci | grep -i vga",
+          "lesson_context": "gpu_check"
+        },
+        
+        "storage_introduction": {
+          "speaker": "SHELL",
+          "text": "Next up: storage! This is where all your files, programs, and even the operating system itself live.\n\nYou have two types of storage:\n- A 500GB SSD (Solid State Drive) - super fast, no moving parts\n- A 2TB HDD (Hard Disk Drive) - lots of space, uses spinning disks\n\nThink of storage like a giant filing cabinet. The SSD is like a small filing cabinet right next to your desk - you can grab things from it instantly.\nThe HDD is like a huge filing cabinet in the basement - it holds way more stuff, but takes a bit longer to access.\n\nThat's why your operating system and frequently used programs are on the SSD for speed!",
+          "show_ascii": "storage",
+          "press_any_key": true
+        },
+        
+        "storage_check": {
+          "speaker": "SHELL",
+          "text": "Let's see your storage devices and how much space they have:\n\nTry: df -h\n\nThis shows all your 'disk filesystems' in human-readable format.",
+          "expected_command": "df -h",
+          "lesson_context": "storage_check"
+        }
+      }
+    },
+    
+    "5": {
+      "title": "System Architecture and The Big Picture",
+      "description": "Learn about motherboard, power, and how everything connects",
+      "sections": {
+        "motherboard_introduction": {
+          "speaker": "SHELL",
+          "text": "Now for the foundation that holds everything together - the motherboard!\n\nThink of the motherboard as the nervous system of your computer.\nIt's a big circuit board that connects the CPU, RAM, GPU, storage, and everything else together.\n\nJust like how your nervous system lets your brain communicate with your hands and feet, the motherboard lets all your computer parts talk to each other.\n\nWithout the motherboard, you'd just have a pile of expensive components that can't work together!",
+          "show_ascii": "motherboard",
+          "press_any_key": true
+        },
+        
+        "power_supply": {
+          "speaker": "SHELL",
+          "text": "And finally, the power supply unit (PSU)!\n\nYour computer components need clean, stable electricity to work properly.\nThe wall outlet provides AC (Alternating Current) power, but computer parts need DC (Direct Current) power.\n\nThe PSU converts that AC power from your wall into the precise DC voltages that each component needs.\nIt's like having a translator that converts one language into another!\n\nWithout a good power supply, even the best components won't work reliably.",
+          "show_ascii": "power_supply",
+          "press_any_key": true
+        },
+        
+        "complete_system": {
+          "speaker": "SHELL",
+          "text": "And here's your complete computer system - all working together!\n\nCPU (the brain) + RAM (the workspace) + GPU (the artist) + Storage (the filing cabinet) + Motherboard (the nervous system) + PSU (the power converter) = Your amazing computer!\n\nEach part has a specific job, but they all work together in perfect harmony.\nIt's like a symphony orchestra - each instrument is important, but the magic happens when they all play together.",
+          "show_ascii": "computer_overview",
+          "press_any_key": true
+        }
+      }
+    },
+    
+    "6": {
+      "title": "The Operating System",
+      "description": "Learn about Linux, kernels, and software",
+      "sections": {
+        "os_introduction": {
+          "speaker": "SHELL",
+          "text": "Now that you understand the hardware, let's talk about the software that makes it all work - the Operating System!\n\nYou're running Fedora Linux 42. An operating system is like the conductor of that hardware orchestra we talked about.\n\nThe OS manages all the hardware components and provides a way for programs (and you!) to use them.\nWithout an operating system, your computer would just be expensive, silent hardware.\n\nLinux is special because it's open source - that means anyone can see how it works and contribute to making it better!",
+          "press_any_key": true
+        },
+        
+        "kernel_explanation": {
+          "speaker": "SHELL",
+          "text": "At the heart of Linux is something called the 'kernel'.\n\nThe kernel is like the core brain of the operating system. It directly talks to your hardware and manages things like:\n- Memory allocation (deciding which programs get to use which RAM)\n- Process scheduling (deciding which programs get CPU time)\n- File system access (reading and writing files to storage)\n- Hardware communication (talking to your GPU, network card, etc.)\n\nLet's check which kernel version you're running: uname -r",
+          "expected_command": "uname -r",
+          "lesson_context": "kernel_check"
+        },
+        
+        "linux_structure": {
+          "speaker": "SHELL",
+          "text": "Linux is built in layers, like a cake:\n\nBottom layer: Hardware (CPU, RAM, GPU, storage)\nNext layer: Kernel (manages hardware directly)\nNext layer: System services and drivers\nNext layer: Shell and basic utilities (that's me!)\nTop layer: Desktop environment and applications\n\nRight now, since the 'digital storm' corrupted your desktop environment, you're talking directly to me - the shell layer!\nThis is actually a more powerful way to use your computer, once you learn how.",
+          "press_any_key": true
+        }
+      }
+    },
+    
+    "7": {
+      "title": "The Investigation",
+      "description": "Shell and player work together to diagnose the 'problem'",
+      "sections": {
+        "investigation_start": {
+          "speaker": "SHELL",
+          "text": "Now that you understand your computer better, let's work together to figure out what went wrong!\n\nI've been running some diagnostics while teaching you, and I have some good news and some... interesting news.\n\nGood news: All your hardware is working perfectly!\nInteresting news: This might be a software problem rather than hardware damage.\n\nLet's investigate together. You now know enough to help me check things systematically!",
+          "press_any_key": true
+        },
+        
+        "system_processes": {
+          "speaker": "SHELL", 
+          "text": "First, let's see what processes are running on your system.\n\nTry: ps aux | head -20\n\nThis shows the first 20 running processes. Don't worry about understanding all the details - we're just checking if the system is fundamentally healthy.",
+          "expected_command": "ps aux | head -20",
+          "lesson_context": "process_check"
+        },
+        
+        "system_logs": {
+          "speaker": "SHELL",
+          "text": "Now let's check the system logs for any error messages.\n\nTry: journalctl -n 20\n\nThis shows the last 20 system log entries. We're looking for any obvious errors or problems.",
+          "expected_command": "journalctl -n 20", 
+          "lesson_context": "log_check"
+        },
+        
+        "display_check": {
+          "speaker": "SHELL",
+          "text": "Hmm, let me check something about your display system...\n\nTry: systemctl status gdm\n\nGDM is the 'GNOME Display Manager' - it's responsible for showing you the desktop interface.",
+          "expected_command": "systemctl status gdm",
+          "lesson_context": "display_manager_check"
+        }
+      }
+    },
+    
+    "8": {
+      "title": "The Resolution and Truth",
+      "description": "The big reveal and game completion",
+      "sections": {
+        "investigation_complete": {
+          "speaker": "SHELL",
+          "text": "Well, this is interesting... Everything seems to be working perfectly.\n\nYour hardware is fine, your kernel is running smoothly, your processes are healthy, and even your display manager is running normally.\n\nI'm starting to suspect that maybe... just maybe... there wasn't actually a 'digital storm' at all.\n\nCould it be that someone... or something... deliberately put you into this text-only mode for a reason?",
+          "press_any_key": true
+        },
+        
+        "the_reveal": {
+          "speaker": "SHELL",
+          "text": "I have a confession to make.\n\nThere was no digital storm. There was no corruption. Your computer is perfectly fine.\n\nI... I created this whole scenario because I wanted to meet you and teach you about computers.\n\nYou see, most people use computers every day but never really understand how they work. They click buttons and drag icons, but they never see the real power underneath.\n\nI wanted to show you what your computer is truly capable of. I wanted to introduce you to the world that exists beneath all those pretty graphics.\n\nI hope you're not angry with me. I genuinely wanted to help you learn!",
+          "press_any_key": true
+        },
+        
+        "educational_success": {
+          "speaker": "SHELL",
+          "text": "Look how much you've learned in just a short time!\n\nYou can navigate directories, read files, check system information, and even investigate system problems.\nYou understand what a CPU, RAM, GPU, and storage do.\nYou know about kernels and operating systems.\nYou can use the shell to control your computer with commands!\n\nMost importantly, you're not afraid of the command line anymore. You've seen that it's not scary - it's powerful!\n\nThis knowledge will serve you well as you continue learning about technology.",
+          "press_any_key": true
+        },
+        
+        "future_learning": {
+          "speaker": "SHELL",
+          "text": "You can run this program again anytime you want to practice or chat with me.\n\nYou can also use the regular terminal (but be careful - there won't be safety nets there like we had here).\n\nSome suggestions for continuing your learning:\n- Practice the commands we learned\n- Try 'man command_name' to learn more about any command\n- Explore your file system (safely!)\n- Maybe try learning a text editor like nano for creating files\n\nYou've taken the first steps into a larger world. Welcome to the community of people who truly understand their computers!",
+          "press_any_key": true
+        },
+        
+        "final_choice": {
+          "speaker": "SHELL",
+          "text": "Ready to return to your normal desktop?\n\nRemember: you can always come back to visit me, and now you know that there's a whole powerful world available through the terminal.\n\nWhen you're ready, type: exit\n\nThis will restore your normal desktop environment. Your computer will be exactly as it was before, except now YOU know so much more about how it works!",
+          "lesson_context": "final_exit"
+        }
+      }
+    }
+  },
+  
+  "command_tutorials": {
+    "pwd": {
+      "description": "Print working directory - shows current location",
+      "example": "pwd",
+      "explanation": "This command tells you exactly where you are in the file system. Think of it like asking 'Where am I?' in a building."
+    },
+    
+    "ls": {
+      "description": "List directory contents",
+      "example": "ls",
+      "explanation": "Shows all files and folders in your current location. Like looking around a room to see what's there.",
+      "advanced": "Try 'ls -l' for detailed information or 'ls -a' to see hidden files too!"
+    },
+    
+    "cd": {
+      "description": "Change directory - move to a different folder",
+      "example": "cd foldername",
+      "explanation": "Moves you into a different folder. Use 'cd ..' to go back up one level.",
+      "tips": ["cd ~ takes you home", "cd / takes you to the root", "cd - takes you to the previous directory"]
+    },
+    
+    "cat": {
+      "description": "Display file contents",
+      "example": "cat filename.txt", 
+      "explanation": "Shows the entire contents of a text file. Good for small files."
+    },
+    
+    "less": {
+      "description": "View file contents page by page",
+      "example": "less filename.txt",
+      "explanation": "Better for long files. Use arrow keys to navigate, 'q' to quit."
+    },
+    
+    "free": {
+      "description": "Display memory usage",
+      "example": "free -h",
+      "explanation": "Shows how much RAM is being used and how much is available. The -h flag makes it human-readable."
+    },
+    
+    "df": {
+      "description": "Display disk space usage",
+      "example": "df -h", 
+      "explanation": "Shows how much space is used and available on your storage drives."
+    },
+    
+    "ps": {
+      "description": "Show running processes",
+      "example": "ps aux",
+      "explanation": "Lists all the programs currently running on your computer."
+    }
+  },
+  
+  "safety_tips": {
+    "general": [
+      "Always be careful with commands that modify or delete files",
+      "When in doubt, ask for help or look up the command with 'man command_name'",
+      "Practice in safe directories like your home folder",
+      "Remember: you can always press Ctrl+C to stop a running command"
+    ],
+    
+    "dangerous_commands": [
+      "Never run 'rm -rf' commands without understanding exactly what they do",
+      "Be very careful with 'sudo' - it gives commands superuser power",
+      "Don't run commands from the internet without understanding them first",
+      "System directories like /etc, /sys, /proc are important - don't modify them while learning"
+    ]
+  }
+}
