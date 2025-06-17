@@ -88,17 +88,43 @@ show_plymouth_shutdown() {
     clear
 }
 
-# Function to switch to TTY and run the game
-launch_in_tty() {
-    echo -e "${GREEN}[SYSTEM] Launching Terminal Quest in TTY3...${NC}"
+# Function to kill GUI and run game in text mode
+kill_gui_and_launch() {
+    echo -e "${GREEN}[SYSTEM] Preparing dramatic text-mode experience...${NC}"
     
     # Kill any existing popups
     pkill zenity 2>/dev/null
     
-    # Create a script to run in the TTY
-    cat > /tmp/terminal_quest_tty.sh << EOF
+    # Save current GUI session info
+    echo "$DISPLAY" > /tmp/terminal_quest_display
+    echo "$DESKTOP_SESSION" > /tmp/terminal_quest_session
+    
+    # Create a script to run after killing GUI
+    cat > /tmp/terminal_quest_textmode.sh << EOF
 #!/bin/bash
-# Clear the TTY
+# Clear the screen completely
+clear
+tput reset
+
+# Show Plymouth-style shutdown
+echo -e "${CYAN}"
+echo "                    Fedora Linux 42"
+echo ""
+echo "          [████████████████████████████]"
+echo ""
+echo "                 Shutting down..."
+echo ""
+echo "              Please wait while we"
+echo "           prepare the system for you"
+echo -e "${NC}"
+
+# Brief animation
+for i in {1..3}; do
+    sleep 1
+    echo "."
+done
+
+sleep 2
 clear
 
 # Show the game banner
@@ -110,7 +136,6 @@ echo "Note: This is an educational game."
 echo "Your computer is NOT actually broken!"
 echo ""
 echo "You can exit at any time by typing 'exit'"
-echo "Press Ctrl+Alt+F1 to return to your desktop anytime"
 echo ""
 echo "=================================="
 echo ""
@@ -119,23 +144,81 @@ echo ""
 cd "$SCRIPT_DIR"
 python3 "$GAME_PYTHON" --tty-mode
 
-# After game exits, show return message
+# After game exits, restore GUI
 echo ""
 echo "=================================="
-echo "Thanks for playing Terminal Quest!"
-echo "Press Ctrl+Alt+F1 to return to your desktop"
-echo "Or press any key to return automatically..."
-read -n 1
-sudo chvt 1
+echo "Restoring your desktop environment..."
+echo "Please wait a moment..."
+echo "=================================="
+
+# Restart the display manager
+sudo systemctl restart gdm
+
+exit 0
 EOF
 
-    chmod +x /tmp/terminal_quest_tty.sh
+    chmod +x /tmp/terminal_quest_textmode.sh
     
-    # Switch to TTY3 and run the game
-    sudo openvt -c 3 -s -w /tmp/terminal_quest_tty.sh
+    # Switch to a text console and run our script
+    echo -e "${YELLOW}[SYSTEM] Switching to text mode...${NC}"
+    echo -e "${YELLOW}[SYSTEM] Your desktop will be restored when you exit the game.${NC}"
+    sleep 2
     
-    # Switch to TTY3
-    sudo chvt 3
+    # Kill the GUI session and switch to text mode
+    sudo systemctl stop gdm
+    
+    # Run the game script in the current terminal
+    /tmp/terminal_quest_textmode.sh
+}
+
+# Alternative simpler approach - run in current terminal with effects
+launch_with_effects() {
+    echo -e "${GREEN}[SYSTEM] Launching Terminal Quest with visual effects...${NC}"
+    
+    # Create popup chaos
+    create_popup_chaos
+    
+    # Clear terminal and show dramatic transition
+    sleep 1
+    clear
+    
+    # Show Plymouth-style shutdown
+    echo -e "${CYAN}"
+    echo "                    Fedora Linux 42"
+    echo ""
+    echo "          [████████████████████████████]"
+    echo ""
+    echo "                 Shutting down..."
+    echo ""
+    echo "              Please wait while we"
+    echo "           prepare the system for you"
+    echo -e "${NC}"
+    
+    # Brief animation
+    for i in {1..3}; do
+        sleep 1
+        echo "."
+    done
+    
+    sleep 2
+    clear
+    
+    # Show the game banner
+    echo "=================================="
+    echo "    TERMINAL QUEST: REMASTERED"
+    echo "=================================="
+    echo ""
+    echo "Note: This is an educational game."
+    echo "Your computer is NOT actually broken!"
+    echo ""
+    echo "You can exit at any time by typing 'exit'"
+    echo ""
+    echo "=================================="
+    echo ""
+    
+    # Run the Python game
+    cd "$SCRIPT_DIR"
+    python3 "$GAME_PYTHON" --tty-mode
 }
 
 # Function to launch safe terminal mode (post-tutorial)
@@ -246,16 +329,34 @@ main() {
         request_sudo
         
         echo -e "${GREEN}[SYSTEM] Starting Terminal Quest experience...${NC}"
-        sleep 1
+        echo ""
+        echo -e "${YELLOW}Choose your experience:${NC}"
+        echo "1. Full immersion (kills desktop temporarily) - Most dramatic!"
+        echo "2. Current terminal with effects - Safer option"
+        echo ""
+        read -p "Enter choice (1 or 2): " -n 1 -r
+        echo ""
         
-        # Create visual chaos
-        create_popup_chaos
-        
-        # Show Plymouth-style shutdown
-        show_plymouth_shutdown
-        
-        # Launch in TTY
-        launch_in_tty
+        case $REPLY in
+            1)
+                echo -e "${CYAN}[INFO] Full immersion mode selected${NC}"
+                echo -e "${YELLOW}[WARNING] This will temporarily shut down your desktop${NC}"
+                echo -e "${YELLOW}[INFO] It will be restored automatically when you exit the game${NC}"
+                echo ""
+                read -p "Continue? (y/N): " -n 1 -r
+                echo ""
+                if [[ $REPLY =~ ^[Yy]$ ]]; then
+                    kill_gui_and_launch
+                else
+                    echo "Falling back to safer option..."
+                    launch_with_effects
+                fi
+                ;;
+            2|*)
+                echo -e "${CYAN}[INFO] Terminal effects mode selected${NC}"
+                launch_with_effects
+                ;;
+        esac
         
     else
         echo -e "${CYAN}[INFO] Tutorial completed - launching Safe Terminal Mode...${NC}"

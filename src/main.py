@@ -1,4 +1,7 @@
-# Terminal Quest: Remastered - Linux Learning Adventure
+"""
+Terminal Quest: Remastered - Main Game Engine
+Educational Linux adventure game for beginners
+"""
 
 import os
 import sys
@@ -6,6 +9,7 @@ import json
 import subprocess
 import time
 import signal
+import argparse
 from pathlib import Path
 
 # Import our custom modules
@@ -226,6 +230,98 @@ class TerminalQuest:
         else:
             print("\n[SHELL] Reset cancelled.")
 
+def main():
+    """Main entry point"""
+    parser = argparse.ArgumentParser(description='Terminal Quest: Remastered - Linux Learning Adventure')
+    parser.add_argument('--tty-mode', action='store_true', help='Run in TTY mode (launched by script)')
+    parser.add_argument('--safe-mode', action='store_true', help='Run in safe terminal mode')
+    parser.add_argument('--reset-tutorial', action='store_true', help='Reset tutorial progress')
+    
+    args = parser.parse_args()
+    
+    game = TerminalQuest()
+    
+    if args.reset_tutorial:
+        game.handle_tutorial_reset()
+        return
+    
+    if args.tty_mode:
+        # We're running in TTY mode, start the game directly
+        print("\033[2J\033[H")  # Clear screen
+        print("=" * 60)
+        print("    TERMINAL QUEST: REMASTERED")
+        print("=" * 60)
+        print()
+        print("Note: This is an educational game. Your computer is not actually broken!")
+        print("You can exit at any time by typing 'exit'")
+        print()
+        print("=" * 60)
+        
+        game.game_loop()
+        
+    elif args.safe_mode or game.config.get('tutorial_completed', False):
+        # Launch safe terminal mode - simplified version for now
+        print("Safe Terminal Mode - Coming Soon!")
+        print("For now, run: python3 main.py --tty-mode")
+        
+    else:
+        # Launch full tutorial experience
+        print("Starting Terminal Quest tutorial...")
+        print("This will switch to a text-only mode for the full experience.")
+        print("Press Ctrl+C now if you want to cancel...")
+        time.sleep(3)
+        
+        # For now, just start the game in current terminal
+        # In production, this would be handled by the launch script
+        game.game_loop()
+
+
+def main():
+    """Main entry point"""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Terminal Quest: Remastered - Linux Learning Adventure')
+    parser.add_argument('--tty-mode', action='store_true', help='Run in TTY mode (launched by script)')
+    parser.add_argument('--safe-mode', action='store_true', help='Run in safe terminal mode')
+    parser.add_argument('--reset-tutorial', action='store_true', help='Reset tutorial progress')
+    
+    args = parser.parse_args()
+    
+    game = TerminalQuest()
+    
+    if args.reset_tutorial:
+        game.handle_tutorial_reset()
+        return
+    
+    if args.tty_mode:
+        # We're running in TTY mode, start the game directly
+        print("\033[2J\033[H")  # Clear screen
+        print("=" * 60)
+        print("    TERMINAL QUEST: REMASTERED")
+        print("=" * 60)
+        print()
+        print("Note: This is an educational game. Your computer is not actually broken!")
+        print("You can exit at any time by typing 'exit'")
+        print()
+        print("=" * 60)
+        
+        game.game_loop()
+        
+    elif args.safe_mode or game.config.get('tutorial_completed', False):
+        # Launch safe terminal mode
+        game.safe_terminal_mode()
+        
+    else:
+        # Launch full tutorial experience
+        print("Starting Terminal Quest tutorial...")
+        print("This will switch to a text-only mode for the full experience.")
+        print("Press Ctrl+C now if you want to cancel...")
+        time.sleep(3)
+        
+        # For now, just start the game in current terminal
+        # In production, this would be handled by the launch script
+        game.game_loop()
+    
     def safe_terminal_mode(self):
         """Run the post-tutorial safe terminal mode"""
         current_dir = Path.home() / "terminal_quest_sandbox"
@@ -289,77 +385,29 @@ class TerminalQuest:
     def show_safe_mode_help(self):
         """Show help for safe mode"""
         help_text = """
-        [SHELL] Safe Terminal Mode Help:
+[SHELL] Safe Terminal Mode Help:
 
-        Available commands:
-        • All basic Linux commands you've learned
-        • help - Show this help message  
-        • reset-tutorial - Start the tutorial over from the beginning
-        • exit - Leave safe mode
+Available commands:
+• All basic Linux commands you've learned
+• help - Show this help message  
+• reset-tutorial - Start the tutorial over from the beginning
+• exit - Leave safe mode
 
-        What's different in Safe Mode:
-        • More freedom to explore and experiment
-        • Still protected from dangerous commands
-        • No story progression - just practice!
-        • Your playground sandbox is still available
+What's different in Safe Mode:
+• More freedom to explore and experiment
+• Still protected from dangerous commands
+• No story progression - just practice!
+• Your playground sandbox is still available
 
-        Remember: You can always use the regular terminal too, but be extra careful there!
-        The skills you learned here apply everywhere.
+Remember: You can always use the regular terminal too, but be extra careful there!
+The skills you learned here apply everywhere.
         """
         print(help_text)
 
-def main():
-    """Main entry point"""
-    import argparse
-    
-    parser = argparse.ArgumentParser(description='Terminal Quest: Remastered - Linux Learning Adventure')
-    parser.add_argument('--tty-mode', action='store_true', help='Run in TTY mode (launched by script)')
-    parser.add_argument('--safe-mode', action='store_true', help='Run in safe terminal mode')
-    parser.add_argument('--reset-tutorial', action='store_true', help='Reset tutorial progress')
-    
-    args = parser.parse_args()
-    
-    game = TerminalQuest()
-    
-    if args.reset_tutorial:
-        game.handle_tutorial_reset()
-        return
-    
-    if args.tty_mode:
-        # We're running in TTY mode, start the game directly
-        print("\033[2J\033[H")  # Clear screen
-        print("=" * 60)
-        print("    TERMINAL QUEST: REMASTERED")
-        print("=" * 60)
-        print()
-        print("Note: This is an educational game. Your computer is not actually broken!")
-        print("You can exit at any time by typing 'exit'")
-        print()
-        print("=" * 60)
-        
-        game.game_loop()
-        
-    elif args.safe_mode or game.config.get('tutorial_completed', False):
-        # Launch safe terminal mode
-        game.safe_terminal_mode()
-        
-    else:
-        # Launch full tutorial experience
-        print("Starting Terminal Quest tutorial...")
-        print("This will switch to a text-only mode for the full experience.")
-        print("Press Ctrl+C now if you want to cancel...")
-        time.sleep(3)
-        
-        # For now, just start the game in current terminal
-        # In production, this would be handled by the launch script
-        game.game_loop()
-    
-    
-
 # Add the safe_terminal_mode method to the TerminalQuest class
-TerminalQuest.safe_terminal_mode = safe_terminal_mode
-TerminalQuest.execute_safe_command = execute_safe_command  
-TerminalQuest.show_safe_mode_help = show_safe_mode_help
+#TerminalQuest.safe_terminal_mode = safe_terminal_mode
+#TerminalQuest.execute_safe_command = execute_safe_command  
+#TerminalQuest.show_safe_mode_help = show_safe_mode_help
 
 if __name__ == "__main__":
     main()
